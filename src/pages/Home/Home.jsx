@@ -2,6 +2,7 @@ import Banner from "./Banner";
 import Featured from "./Featured";
 import PopularMenu from "./PopularMenu";
 import SwiperSlideCategory from "./SwiperSlide";
+import Testimonials from "./Testimonials";
 
 const Home = () => {
     return (
@@ -10,6 +11,7 @@ const Home = () => {
             <SwiperSlideCategory></SwiperSlideCategory>
             <PopularMenu></PopularMenu>
             <Featured></Featured>
+            <Testimonials></Testimonials>
         </div>
     );
 };
