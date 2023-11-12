@@ -13,10 +13,18 @@ import img2 from '../../../public/assets//home//slide2.jpg'
 import img3 from '../../../public/assets//home//slide3.jpg'
 import img4 from '../../../public/assets//home//slide4.jpg'
 import img5 from '../../../public/assets//home//slide5.jpg'
+import SectionTitle from '../Shared/SectionTitle';
 
 const SwiperSlideCategory = () => {
     return (
         <>
+        <div>
+            <SectionTitle
+            subHeading={"From 11:00am to 10:00pm"}
+            heading={"Order Online"}
+            >
+            </SectionTitle>
+        </div>
             <div className='body'>
                 <Swiper
                     slidesPerView={3}
@@ -25,7 +33,7 @@ const SwiperSlideCategory = () => {
                         clickable: true,
                     }}
                     modules={[Pagination]}
-                    className="mySwiper my-24"
+                    className="mySwiper mt-4 mb-8 md:mt-8 md:mb-16"
                 >
                     <SwiperSlide>
                         <img className='relative' src={img1} alt="" />
