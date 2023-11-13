@@ -4,6 +4,7 @@ import {
 import MainLayout from "../mailnLayout/MainLayout";
 import ErrorPage from "../errorPage/ErrorPage";
 import Home from "../pages/Home/Home";
+import Menu from "../pages/OurMenu/Menu";
 
   export const router = createBrowserRouter([
     {
@@ -14,6 +15,10 @@ import Home from "../pages/Home/Home";
         {
             path: '/',
             element: <Home></Home>
+        },
+        {
+            path: '/ourMenu',
+            element: <Menu></Menu>
         }
       ]
     },
