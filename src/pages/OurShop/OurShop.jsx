@@ -3,10 +3,18 @@ import shopImage from '../../../public/assets/shop/banner2.jpg'
 import { useState } from "react";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import useMenu from "../../Hooks/useMenu";
+import FoodCard from "../Shared/FoodCard";
 
 
 const OurShop = () => {
     const [tabIndex, setTabIndex] = useState(0)
+    const [menu] = useMenu()
+    const dessertItems = menu.filter(item => item.category === 'dessert')
+    const pizzaItems = menu.filter(item => item.category === 'pizza')
+    const saladItems = menu.filter(item => item.category === 'salad')
+    const soupItems = menu.filter(item => item.category === 'soup')
+    const drinksItems = menu.filter(item => item.category === 'drinks')
     return (
         <div>
             <SectionCover bgImage={shopImage} title={"Our shop"}></SectionCover>
@@ -20,11 +28,71 @@ const OurShop = () => {
                         <Tab>DESSERT</Tab>
                         <Tab>DRINKS</Tab>
                     </TabList>
-                    <TabPanel></TabPanel>
-                    <TabPanel></TabPanel>
-                    <TabPanel></TabPanel>
-                    <TabPanel></TabPanel>
-                    <TabPanel></TabPanel>
+                    {/* salad item */}
+                    <TabPanel>
+                        <div className="my-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {
+                                saladItems.map(item =>
+                                    <FoodCard
+                                        key={item._id}
+                                        item={item}
+                                    > </FoodCard>)
+                            }
+                        </div>
+                    </TabPanel>
+
+                    {/* pizza item */}
+                    <TabPanel>
+                        <div className="my-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {
+                                pizzaItems.map(item =>
+                                    <FoodCard
+                                        key={item._id}
+                                        item={item}
+                                    > </FoodCard>)
+                            }
+                        </div>
+                    </TabPanel>
+
+                    {/* soup item */}
+                    <TabPanel>
+                        <div className="my-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {
+                                soupItems.map(item =>
+                                    <FoodCard
+                                        key={item._id}
+                                        item={item}
+                                    > </FoodCard>)
+                            }
+                        </div>
+                    </TabPanel>
+
+                    {/* dessert item */}
+                    <TabPanel>
+                        <div className="my-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {
+                                dessertItems.map(item =>
+                                    <FoodCard
+                                        key={item._id}
+                                        item={item}
+                                    > </FoodCard>)
+                            }
+                        </div>
+                    </TabPanel>
+
+                    {/* drinks item */}
+                    <TabPanel>
+                        <div className="my-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {
+                                drinksItems.map(item =>
+                                    <FoodCard
+                                        key={item._id}
+                                        item={item}
+                                    > </FoodCard>)
+                            }
+                        </div>
+                    </TabPanel>
+
                 </Tabs>
             </div>
         </div>
