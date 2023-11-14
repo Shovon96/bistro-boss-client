@@ -5,6 +5,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import useMenu from "../../Hooks/useMenu";
 import FoodCard from "../Shared/FoodCard";
+import { Helmet } from "react-helmet-async";
 
 
 const OurShop = () => {
@@ -17,6 +18,9 @@ const OurShop = () => {
     const drinksItems = menu.filter(item => item.category === 'drinks')
     return (
         <div>
+            <Helmet>
+                <title>Bistro Boss | Our Shop</title>
+            </Helmet>
             <SectionCover bgImage={shopImage} title={"Our shop"}></SectionCover>
             {/* react tabs panel */}
             <div>
