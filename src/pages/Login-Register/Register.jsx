@@ -4,11 +4,14 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { useForm } from "react-hook-form"
 import { Helmet } from "react-helmet-async";
 import toast from "react-hot-toast";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import SocialLogin from "../Shared/SocialLogin";
 
 const Register = () => {
     const { createUser, updateUserProfile } = useContext(AuthContext)
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const axiosPublic = useAxiosPublic()
 
     const onSubmit = (data) => {
         // console.log(data);
@@ -16,13 +19,22 @@ const Register = () => {
             .then(() => {
                 updateUserProfile(data.name, data.photo)
                     .then(() => {
-                        toast.success('Profile Updated Successfully!')
+                        const userInfo = {
+                            name: data.name,
+                            email: data.email
+                        }
+                        axiosPublic.post('/users', userInfo)
+                            .then(res => {
+                                if (res.data.insertedId) {
+                                    toast.success('Successfully Login!')
+                                    navigate('/')
+                                }
+                            })
+                        // toast.success('Profile Updated Successfully!')
                     })
-                    .catch(error => {
-                        toast.error(error.message)
-                    })
-                toast.success('Successfully Login!')
-                navigate('/')
+                // .catch(error => {
+                //     toast.error(error.message)
+                // })
             })
             .catch(err => {
                 toast.error(err.message)
@@ -87,11 +99,14 @@ const Register = () => {
                                 {errors.password?.type === 'required' && <span className="text-red-600">Password is required</span>}
                                 {errors.password?.type === 'pattern' && <span className="text-red-600">Password should be must 6 charecter and one uppercase, one lowercase and special charecter, one number is required</span>}
                             </div>
-                            <div className="form-control mt-6">
+                            <div className="form-control mt-4">
                                 <button className="btn btn-primary">SignUp</button>
                             </div>
                         </form>
-                        <p className="text-center mb-3"><small>New here ? <Link to='/login' className='text-blue-600 hover:underline'>Create an account</Link></small></p>
+                        <div className="mb-2">
+                            <SocialLogin></SocialLogin>
+                        </div>
+                        <p className="text-center mb-3"><small>You already have and account Go? <Link to='/login' className='text-blue-600 hover:underline'>SignIn</Link></small></p>
                     </div>
                 </div>
             </div>

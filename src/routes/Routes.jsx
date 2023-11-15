@@ -37,7 +37,7 @@ import Dashboard from "../mailnLayout/Dashboard";
     // dashboard path and elements
     {
         path: '/dashboard',
-        element: <Dashboard></Dashboard>,
+        element: <PrivetRoutes><Dashboard></Dashboard></PrivetRoutes>,
         children:[
             {
                 path: '/dashboard/cart',
