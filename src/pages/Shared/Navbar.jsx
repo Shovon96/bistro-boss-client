@@ -3,10 +3,12 @@ import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
 import { FaCartPlus } from "react-icons/fa";
+import useCarts from "../../Hooks/useCarts";
 
 const Navbar = () => {
 
     const { user, logOut } = useContext(AuthContext);
+    const [cart] = useCarts()
 
     const handleLogout = () => {
         logOut()
@@ -61,7 +63,7 @@ const Navbar = () => {
         </NavLink>
         <NavLink to='/' className='flex items-center gap-1 ml-8'>
             <FaCartPlus className="text-lg"/>
-            <div className="badge badge-secondary">+0</div>
+            <div className="badge badge-secondary">+{cart.length}</div>
         </NavLink>
     </>
 
