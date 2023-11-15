@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
+import { FaCartPlus } from "react-icons/fa";
 
 const Navbar = () => {
 
@@ -57,6 +58,10 @@ const Navbar = () => {
             }
         >
             Our Shop
+        </NavLink>
+        <NavLink to='/' className='flex items-center gap-1 ml-8'>
+            <FaCartPlus className="text-lg"/>
+            <div className="badge badge-secondary">+0</div>
         </NavLink>
     </>
 
