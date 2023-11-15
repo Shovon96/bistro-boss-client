@@ -7,6 +7,8 @@ import Home from "../pages/Home/Home";
 import Menu from "../pages/OurMenu/Menu";
 import OurShop from "../pages/OurShop/OurShop";
 import Login from "../pages/Login-Register/Login";
+import Register from "../pages/Login-Register/Register";
+import PrivetRoutes from "./PrivetRoutes";
 
   export const router = createBrowserRouter([
     {
@@ -24,7 +26,7 @@ import Login from "../pages/Login-Register/Login";
         },
         {
             path: '/ourShop',
-            element: <OurShop></OurShop>
+            element: <PrivetRoutes><OurShop></OurShop></PrivetRoutes>
         }
       ],
     },
@@ -32,4 +34,8 @@ import Login from "../pages/Login-Register/Login";
       path: '/login',
       element: <Login></Login>
     },
+    {
+      path: '/register',
+      element: <Register></Register>
+    }
   ]);
