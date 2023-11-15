@@ -1,10 +1,39 @@
+import Swal from "sweetalert2";
 import useCarts from "../../Hooks/useCarts";
 import { MdDeleteForever } from "react-icons/md";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const MyCart = () => {
 
-    const [cart] = useCarts()
-    const totalPrice = cart.reduce((total, item) => total + item.price, 0)
+    const [cart, refetch] = useCarts()
+    const totalPrice = cart.reduce((total, item) => total + item.price, 0);
+    const axiosSecure = useAxiosSecure()
+
+    const handleDelete = _id => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.delete(`/carts/${_id}`)
+                    .then(res => {
+                        if (res.data.deletedCount > 0) {
+                            refetch()
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            });
+                        }
+                    })
+            }
+        });
+    }
 
     return (
         <>
@@ -29,7 +58,7 @@ const MyCart = () => {
                         {
                             cart.map((item, index) =>
                                 <tr key={item._id}>
-                                    <th>{index +1}</th>
+                                    <th>{index + 1}</th>
                                     <td>
                                         <div className="flex items-center gap-3">
                                             <div className="avatar">
@@ -42,7 +71,7 @@ const MyCart = () => {
                                     <td>{item?.name}</td>
                                     <td>{item?.price}</td>
                                     <th>
-                                        <button className="text-error text-3xl"><MdDeleteForever /></button>
+                                        <button onClick={() => handleDelete(item._id)} className="text-error text-3xl"><MdDeleteForever /></button>
                                     </th>
                                 </tr>
                             )
