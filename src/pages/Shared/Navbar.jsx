@@ -61,7 +61,7 @@ const Navbar = () => {
         >
             Our Shop
         </NavLink>
-        <NavLink to='/' className='flex items-center gap-1 ml-8'>
+        <NavLink to='/dashboard/cart' className='flex items-center gap-1 ml-8'>
             <FaCartPlus className="text-lg"/>
             <div className="badge badge-secondary">+{cart.length}</div>
         </NavLink>
