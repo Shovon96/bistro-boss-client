@@ -2,11 +2,13 @@ import { useContext } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+import useCarts from "../../Hooks/useCarts";
 
 const FoodCard = ({ item }) => {
     const { name, image, price, recipe, _id } = item;
     const { user } = useContext(AuthContext)
-    const axiosSecure = useAxiosSecure()
+    const axiosSecure = useAxiosSecure();
+    const [, refetch] = useCarts()
 
     const handleAddToCart = () => {
         if (user && user.email) {
@@ -22,6 +24,7 @@ const FoodCard = ({ item }) => {
                 if(res.data.insertedId){
                     toast.success(`${name} add your cart`)
                 }
+                refetch()
             })
 
         }
