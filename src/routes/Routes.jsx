@@ -11,6 +11,7 @@ import Register from "../pages/Login-Register/Register";
 import PrivetRoutes from "./PrivetRoutes";
 import MyCart from "../pages/Dashboard/MyCart";
 import Dashboard from "../mailnLayout/Dashboard";
+import AllUsers from "../pages/Dashboard/AllUsers";
 
   export const router = createBrowserRouter([
     // user path and elements
@@ -42,6 +43,10 @@ import Dashboard from "../mailnLayout/Dashboard";
             {
                 path: '/dashboard/cart',
                 element: <MyCart></MyCart>
+            },
+            {
+                path: '/dashboard/allUsers',
+                element: <AllUsers></AllUsers>
             }
         ]
     },

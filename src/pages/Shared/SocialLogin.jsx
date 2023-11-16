@@ -3,19 +3,28 @@ import { FaGithub, FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
 import { useLocation, useNavigate } from "react-router-dom";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const SocialLogin = () => {
 
     const { googleSignIn } = useContext(AuthContext);
+    const axiosPublic = useAxiosPublic()
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/'
 
     const handleGoogleSignIn = () => {
         googleSignIn()
-            .then((res) => {
-                toast.success(res.user.displayName, "Login");
-                navigate(from, { replace: true })
+            .then((result) => {
+                const userInfo = {
+                    email: result.user?.email,
+                    name: result.user?.displayName
+                }
+                axiosPublic.post('/users', userInfo)
+                    .then(() => {
+                        toast.success("Login Successfully");
+                        navigate(from, { replace: true })
+                    })
             })
     }
 
