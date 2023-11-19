@@ -10,12 +10,12 @@ const image_hosting_key = import.meta.env.VITE_IMAGEBB_HOSTING_API
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 
 const AddItems = () => {
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, reset } = useForm();
     const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxiosSecure();
 
     const onSubmit = async (data) => {
-        console.log(data);
+        // console.log(data);
         // image upload to imagebb and then get an url
         const imgFile = { image: data.image[0] }
         const res = await axiosPublic.post(image_hosting_api, imgFile, {
@@ -32,13 +32,13 @@ const AddItems = () => {
                 image: res.data.data.display_url
             }
             const menuPost = await axiosSecure.post('/menu', menuItem);
-            console.log(menuPost.data);
+            // console.log(menuPost.data);
             if(menuPost.data.insertedId){
-                toast.success("Menu Item has been added");
-                console.log('menu item add');
+                toast.success(`${menuItem?.name} has been added`);
             }
         }
-        console.log(res.data);
+        // console.log(res.data);
+        reset()
     }
     return (
         <div>

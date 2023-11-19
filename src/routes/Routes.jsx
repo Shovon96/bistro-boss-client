@@ -48,7 +48,8 @@ import AdminRoute from "./AdminRoute";
             },
             {
                 path: '/dashboard/addItems',
-                element: <AdminRoute><AddItems></AddItems></AdminRoute>
+                element: <AddItems></AddItems>
+                // element: <AdminRoute><AddItems></AddItems></AdminRoute>
             },
             {
                 path: '/dashboard/allUsers',
