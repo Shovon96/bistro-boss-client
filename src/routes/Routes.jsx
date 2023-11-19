@@ -12,6 +12,8 @@ import PrivetRoutes from "./PrivetRoutes";
 import MyCart from "../pages/Dashboard/MyCart";
 import Dashboard from "../mailnLayout/Dashboard";
 import AllUsers from "../pages/Dashboard/AllUsers";
+import AddItems from "../pages/Dashboard/AddItems";
+import AdminRoute from "./AdminRoute";
 
   export const router = createBrowserRouter([
     // user path and elements
@@ -45,8 +47,12 @@ import AllUsers from "../pages/Dashboard/AllUsers";
                 element: <MyCart></MyCart>
             },
             {
+                path: '/dashboard/addItems',
+                element: <AdminRoute><AddItems></AddItems></AdminRoute>
+            },
+            {
                 path: '/dashboard/allUsers',
-                element: <AllUsers></AllUsers>
+                element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
             }
         ]
     },
