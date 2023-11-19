@@ -14,6 +14,7 @@ import Dashboard from "../mailnLayout/Dashboard";
 import AllUsers from "../pages/Dashboard/AllUsers";
 import AddItems from "../pages/Dashboard/AddItems";
 import AdminRoute from "./AdminRoute";
+import ManageItems from "../pages/Dashboard/ManageItems";
 
   export const router = createBrowserRouter([
     // user path and elements
@@ -48,8 +49,11 @@ import AdminRoute from "./AdminRoute";
             },
             {
                 path: '/dashboard/addItems',
-                element: <AddItems></AddItems>
-                // element: <AdminRoute><AddItems></AddItems></AdminRoute>
+                element: <AdminRoute><AddItems></AddItems></AdminRoute>
+            },
+            {
+                path: '/dashboard/manageItems',
+                element: <AdminRoute><ManageItems></ManageItems></AdminRoute>
             },
             {
                 path: '/dashboard/allUsers',
