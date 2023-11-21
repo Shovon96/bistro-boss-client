@@ -4,11 +4,13 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
 import { FaCartPlus } from "react-icons/fa";
 import useCarts from "../../Hooks/useCarts";
+import useAdmin from "../../Hooks/useAdmin";
 
 const Navbar = () => {
 
     const { user, logOut } = useContext(AuthContext);
-    const [cart] = useCarts()
+    const [cart] = useCarts();
+    const [isAdmin] = useAdmin()
 
     const handleLogout = () => {
         logOut()
@@ -37,14 +39,26 @@ const Navbar = () => {
         >
             Contact Us
         </NavLink>
-        <NavLink
-            to="/dashboard"
+        {
+            isAdmin ?
+            <NavLink
+            to="/dashboard/adminHome"
             className={({ isActive, isPending }) =>
                 isPending ? "pending" : isActive ? "underline font-bold" : ""
             }
         >
             Dashboard
         </NavLink>
+        :
+        <NavLink
+            to="/dashboard/userHome"
+            className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "underline font-bold" : ""
+            }
+        >
+            Dashboard
+        </NavLink>
+        }
         <NavLink
             to="/ourMenu"
             className={({ isActive, isPending }) =>

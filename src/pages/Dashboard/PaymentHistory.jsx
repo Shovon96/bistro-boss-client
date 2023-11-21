@@ -34,17 +34,19 @@ const PaymentHistory = () => {
                                 <th>Status</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            {payments.map((payment, index) =>
-                                <tr key={payment._id}>
-                                    <th>{index +1}</th>
-                                    <td>{payment?.price}</td>
-                                    <td>{payment?.transactionId}</td>
-                                    <td>{payment?.status}</td>
-                                </tr>
-                            )}
-
-                        </tbody>
+                        {payments.length === 0 ?
+                            <div><h1 className="text-xl text-gray-400 font-medium text-end mt-8">No payment History yet</h1></div> :
+                            <tbody>
+                                {payments.map((payment, index) =>
+                                    <tr key={payment._id}>
+                                        <th>{index + 1}</th>
+                                        <td>{payment?.price}</td>
+                                        <td>{payment?.transactionId}</td>
+                                        <td>{payment?.status}</td>
+                                    </tr>
+                                )}
+                            </tbody>
+                        }
                     </table>
                 </div>
             </div>
