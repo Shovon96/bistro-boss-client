@@ -4,6 +4,7 @@ import SectionTitle from "../Shared/SectionTitle";
 import { FaEdit } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 const ManageItems = () => {
     const [menu, , refetch] = useMenu();
@@ -30,7 +31,7 @@ const ManageItems = () => {
                         title: `${item?.name} has been Delete!`,
                         showConfirmButton: false,
                         timer: 1000
-                      });
+                    });
                 }
 
             }
@@ -74,7 +75,9 @@ const ManageItems = () => {
                                         <td>{item?.name}</td>
                                         <td>$ {item?.price}</td>
                                         <td>
-                                            <button className="text-white text-2xl bg-orange-500 p-2"><FaEdit /></button>
+                                            <Link to={`/dashboard/updatedItem/${item._id}`}>
+                                                <button className="text-white text-2xl bg-orange-500 p-2"><FaEdit /></button>
+                                            </Link>
                                         </td>
                                         <td>
                                             <button onClick={() => handleDeleteItem(item)} className="text-error text-3xl"><MdDeleteForever /></button>

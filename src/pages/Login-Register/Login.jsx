@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -12,6 +12,7 @@ const Login = () => {
     const { signIn } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
+    const capchaRef = useRef()
 
     const from = location.state?.from?.pathname || '/'
 
@@ -35,10 +36,10 @@ const Login = () => {
         navigate(from, { replace: true })
     }
 
-    const handleValidateCaptcha = (e) => {
-        const userCaptchaValue = e.target.value;
+    const handleValidateCaptcha = () => {
+        const userCaptchaValue = capchaRef.current.value;
         // console.log(userCaptchaValue);
-        if (validateCaptcha(userCaptchaValue) === true) {
+        if (validateCaptcha(userCaptchaValue, false)) {
             setDisabled(false)
         }
         else {
@@ -75,7 +76,7 @@ const Login = () => {
                                 <label className="label">
                                     <LoadCanvasTemplate />
                                 </label>
-                                <input name="captcha" onBlur={handleValidateCaptcha} type="text" placeholder="Type the above" className="input input-bordered" required />
+                                <input disabled={!disabled} name="captcha" onChange={handleValidateCaptcha} ref={capchaRef} type="text" placeholder="Type the above" className="input input-bordered" required />
                                 <label className="label">
                                     <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                                 </label>

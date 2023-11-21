@@ -22,6 +22,13 @@ const Dashboard = () => {
                                 <li><NavLink to='/dashboard/manageItems'><FaList></FaList> Manage Items</NavLink></li>
                                 <li><NavLink to='/dashboard/manageBookings'><FaBook></FaBook> Manage Bookings</NavLink></li>
                                 <li><NavLink to='/dashboard/allUsers'><FaUser></FaUser> All Users</NavLink></li>
+                                <div className="divider"></div>
+                                <li><NavLink to='/dashboard/userHome'><FaHome></FaHome> User Home</NavLink></li>
+                                <li><NavLink to='/dashboard/reservation'><FaCalendar></FaCalendar> Reservation</NavLink></li>
+                                <li><NavLink to='/dashboard/paymentHistory'><FaRedRiver></FaRedRiver> Pyment History</NavLink></li>
+                                <li><NavLink to='/dashboard/cart'><FaCartPlus></FaCartPlus> My Cart</NavLink></li>
+                                <li><NavLink to='/dashboard/addReview'><FaAd></FaAd> Add Review</NavLink></li>
+                                <li><NavLink to='/dashboard/myBooking'><FaList></FaList> My Booking</NavLink></li>
 
                             </>
                             :
